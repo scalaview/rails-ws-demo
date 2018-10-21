@@ -6,7 +6,7 @@ var options = {
   method: 'POST',
   json: {
     package_group_id: "XAH174738",
-    product_id: "PPP362838",
+    product_id: "PPP357618",
     wall_id: "XAK1"
   }
 };
@@ -14,6 +14,29 @@ var options = {
 
 request(options, function (error, response, body) {
   if (!error && response.statusCode == 200) {
-    console.log(body) // Print the shortened url.
+    console.log(body)
   }
 });
+
+
+
+
+// {
+//     package_group_id: "XAH174738",
+//     product_id: "PPP362838",
+//     wall_id: "XAK1"
+//   }
+
+
+// {
+//     package_group_id: "XAH174738",
+//     product_id: "PPP357618",
+//     wall_id: "XAK1"
+//   }
+
+
+// {
+//     package_group_id: "XAH174738",
+//     product_id: "PPP357619",
+//     wall_id: "XAK1"
+//   }

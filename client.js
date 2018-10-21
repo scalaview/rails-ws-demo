@@ -2,7 +2,7 @@ var App = {};
 
 App.pick = function(front_id) {
   data = {
-    front_id: front_id,
+    front_id: 90,
     action : "put"
   };
   message = {
@@ -26,11 +26,28 @@ App.unpack = function(behind_id){
   App.ws.send(JSON.stringify(message));
 }
 
+
+App.set_up = function(front_ids){
+  data = {
+    front_ids: front_ids,
+    broken: {
+      front_id: 100
+    },
+    action : "set_up"
+  };
+  message = {
+    command: "message",
+    identifier: JSON.stringify(App.param),
+    data: JSON.stringify(data)
+  };
+  App.ws.send(JSON.stringify(message));
+}
+
 App.connect_server = function() {
   const W3CWebSocket = require('ws');
   App.ws = new W3CWebSocket('ws://localhost:3004/wall', ["actioncable-v1-json", "actioncable-unsupported"]);
 
-  App.param = {channel: "OperationChannel", uuid: guid(), front_ids: [1, 2, 3, 4, 5]};
+  App.param = {channel: "OperationChannel", uuid: guid()};
 
   App.ws.on('open', function open() {
     data = {
@@ -49,6 +66,9 @@ App.connect_server = function() {
     }
     if(response.message && response.message.action && response.message.action == 'unpack'){
       App.unpack(response.message.data.behind_id)
+    }
+    if(response.message && response.message.action && response.message.action == 'set_up'){
+      App.set_up([1, 2, 3, 4, 5])
     }
   });
   function guid() {
