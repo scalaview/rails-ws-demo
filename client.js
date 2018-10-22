@@ -2,7 +2,7 @@ var App = {};
 
 App.pick = function(front_id) {
   data = {
-    front_id: 90,
+    front_id: front_id,
     action : "put"
   };
   message = {
@@ -30,9 +30,9 @@ App.unpack = function(behind_id){
 App.set_up = function(front_ids){
   data = {
     front_ids: front_ids,
-    broken: {
-      front_id: 100
-    },
+    // broken: {
+    //   front_id: 1
+    // },
     action : "set_up"
   };
   message = {
